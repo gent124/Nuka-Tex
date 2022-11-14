@@ -13,10 +13,17 @@
     <form action="/update" method="post">
         <label for="products">Choose a Product:</label>
         <select id="products" name="products">
-            <input type="text" placeholder="Product Name" name="product_name">
-            <input type="text" placeholder="Product Amount Bought" name="product_bought">
-            <input type="text" placeholder="Product Amount Sold" name="product_sold">
-            <input type="text" placeholder="Product Amount Remaining" name="product_remaining">
+            <% productsList.forEach(products=> {%>
+                <option>
+                    <%= products.productId%>
+                </option>
+
+                <%})%>
+        </select>
+        <input type="text" placeholder="Product Name" name="product_name">
+        <input type="text" placeholder="Product Amount Bought" name="product_bought">
+        <input type="text" placeholder="Product Amount Sold" name="product_sold">
+        <input type="text" placeholder="Product Amount Remaining" name="product_remaining">
     </form>
 </body>
 

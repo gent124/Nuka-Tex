@@ -46,9 +46,14 @@ app.get('/product', function (req, res) {
     res.render('product');
 });
 
+
 // '/update' GET request with respond with Update.ejs
 app.get('/update', function (req, res) {
-    res.render('update');
+    Product.find({}, function (err, products) {
+        res.render('update', {
+            productsList: products
+        });
+    });
 });
 
 // '/list' GET request with respond with list.ejs and create an object of products that we want pass to list.ejs
