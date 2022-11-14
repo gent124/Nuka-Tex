@@ -6,17 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        input {
+            size: 40;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>Shto nje produkt te ri</h1>
     <form action="/product" method="post">
-        <input type="text" placeholder="Product ID" name="product_id">
-        <input type="text" placeholder="Product Name" name="product_name">
-        <input type="text" placeholder="Product Amount Bought" name="product_bought">
-        <input type="text" placeholder="Product Amount Sold" name="product_sold">
-        <input type="text" placeholder="Product Amount Remaining" name="product_remaining">
+        <!--Form for input of product into db-->
+        <input type="text" placeholder="Product ID" name="product_id" size="15">
+        <input type="text" placeholder="Product Name" name="product_name" size="15">
+        <input type="text" placeholder="Product Amount Bought" name="product_bought" size="15">
+        <input type="text" placeholder="Product Price per Meter" name="product_price">
+        <input type="text" placeholder="Product Amount Sold" name="product_sold" size="15">
+        <input type="text" placeholder="Product Amount Remaining" name="product_remaining" size="21">
         <button type="submit">Submit</button>
     </form>
+
 </body>
 
 </html>
