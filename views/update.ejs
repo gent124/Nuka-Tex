@@ -11,20 +11,32 @@
 <body>
     <h1>Update the Record</h1>
     <form action="/update" method="post">
-        <label for="products">Choose a Product:</label>
-        <select id="products" name="products">
+        <!-- <label for="products">Choose a Product:</label> -->
+        <!-- <select id="products" name="products">
             <% productsList.forEach(products=> {%>
                 <option>
                     <%= products.productId%>
                 </option>
 
-                <%})%>
-        </select>
-        <input type="text" placeholder="Product Name" name="product_name">
-        <input type="text" placeholder="Product Amount Bought" name="product_bought">
-        <input type="text" placeholder="Product Amount Sold" name="product_sold">
-        <input type="text" placeholder="Product Amount Remaining" name="product_remaining">
+                <%})%> -->
+        <!-- </select> -->
+
+        <!-- <% productsList.forEach(products=> {%>
+            <input type="text" placeholder="Product ID" value="<%= products.productId%>" name="product_id" size="15">
+            <input type="text" placeholder="Product Name" value="<%= products.productName%>" name="product_name"
+                size="15">
+            <input type="text" placeholder="Product Amount Bought" value="<%= products.productAmountBought%>"
+                name="product_bought" size="15">
+            <input type="text" placeholder="Product Price per Meter" value="<%= products.productPricePerMeter%>"
+                name="product_price">
+            <input type="text" placeholder="Product Amount Sold" value="<%= products.productAmountSold%>"
+                name="product_sold" size="15">
+            <input type="text" placeholder="Product Amount Remaining" value="<%= products.productAmountRemaining%>"
+                name="product_remaining" size="21">
+            <button type="submit" href="/updateRecords/ <%=productId%>">Submit</button>
+            <%})%> -->
     </form>
+
 </body>
 
 </html>

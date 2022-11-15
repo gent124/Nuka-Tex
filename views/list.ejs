@@ -14,53 +14,44 @@
 
 <body>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Amount Bought</th>
+                <th scope="col">Product Price per meter</th>
+                <th scope="col">Product Amount Sold</th>
+                <th scope="col">Product Amount Remaining</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%productsList.forEach(products=> {%>
+                <tr>
+                    <th scope="row">
+                        <%= products.productId %>
+                    </th>
+                    <td>
+                        <%= products.productName %>
+                    </td>
 
-    <% productsList.forEach(products=> {%>
-
-        <p>
-            <% products.productId%>
-        </p>
-
-
-        <%})%>
-
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Product Amount Bought</th>
-                        <th scope="col">Product Price per meter</th>
-                        <th scope="col">Product Amount Sold</th>
-                        <th scope="col">Product Amount Remaining</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%productsList.forEach(products=> {%>
-                        <tr>
-                            <th scope="row">
-                                <%= products.productId %>
-                            </th>
-                            <td>
-                                <%= products.productName %>
-                            </td>
-
-                            <td>
-                                <%= products.productAmountBought%>
-                            </td>
-                            <td>
-                                <%= products.productPricePerMeter%>
-                            </td>
-                            <td>
-                                <%= products.productAmountSold%>
-                            </td>
-                            <td>
-                                <%= products.productAmountRemaining%>
-                            </td>
-                        </tr>
-                        <%})%>
-                            <!-- <% productsList.forEach(product=> {%>
+                    <td>
+                        <%= products.productAmountBought%>
+                    </td>
+                    <td>
+                        <%= products.productPricePerMeter%>
+                    </td>
+                    <td>
+                        <%= products.productAmountSold%>
+                    </td>
+                    <td>
+                        <%= products.productAmountRemaining%>
+                    </td>
+                    <td><a class="ui purple button" href="/updateRecords/<%= products._id%>">Update</button>
+                    </td>
+                </tr>
+                <%})%>
+                    <!-- <% productsList.forEach(product=> {%>
                                 <tr>
                                     <th scope="row">
                                         <% product._id %>
@@ -72,8 +63,8 @@
 
 
 
-                </tbody>
-            </table>
+        </tbody>
+    </table>
 
 
 </body>

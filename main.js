@@ -47,14 +47,6 @@ app.get('/product', function (req, res) {
 });
 
 
-// '/update' GET request with respond with Update.ejs
-app.get('/update', function (req, res) {
-    Product.find({}, function (err, products) {
-        res.render('update', {
-            productsList: products
-        });
-    });
-});
 
 // '/list' GET request with respond with list.ejs and create an object of products that we want pass to list.ejs
 app.get('/list', function (req, res) {
@@ -88,6 +80,48 @@ app.post("/product", function (req, res) {
 
 
 });
+
+
+
+app.get('/updateRecords/:id', function (req, res, next) {
+
+    Product.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (err, doc) => {
+        if (err) {
+
+            console.log("Cannot retrive data because of database problem");
+            next(err);
+        } else {
+            res.render('updateRecords', { Product: doc });
+        }
+    });
+
+});
+
+
+app.post('/updateRecords/:id', (req, res, next) => {
+    console.log(req.params.id);
+    console.log(req.body);
+    const id = req.params.id;
+    const updates = req.body;
+    Product.findByIdAndUpdate(req.params.id, updates, (err, doc) => {
+
+
+        if (err) {
+            console.log("Something went wrong with your data");
+            console.log(err);
+            next(err);
+
+        } else {
+            console.log(req.body.product_name);
+            res.redirect('../list');
+        }
+
+
+
+    });
+
+});
+
 //listen() function is used to listen to conenctions on the specified host and port
 app.listen(3000, function () {
     console.log("App is running on Port 3000");
