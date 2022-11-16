@@ -130,8 +130,8 @@ app.post('/updateRecords/:id', (req, res, next) => {
 });
 
 //Function to delete a record in the database and then redirect in the list page
-app.get('/delete/:id', (res, req, next) => {
-    Product.findByIdAndDelete(req.params.id, (err, docs) => {
+app.get('/delete/:id', (req, res, next) => {
+    Product.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
             console.log(err);
             console.log('Something went wrong to delete data');
