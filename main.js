@@ -83,6 +83,7 @@ app.post("/product", function (req, res) {
 
 
 
+//GET request to get the record of MongoDB by id given in the URL
 app.get('/updateRecords/:id', function (req, res, next) {
 
     Product.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (err, doc) => {
@@ -97,13 +98,19 @@ app.get('/updateRecords/:id', function (req, res, next) {
 
 });
 
+//POST request to find record by id and then update it in the database
 
 app.post('/updateRecords/:id', (req, res, next) => {
-    console.log(req.params.id);
-    console.log(req.body);
     const id = req.params.id;
-    const updates = req.body;
-    Product.findByIdAndUpdate(req.params.id, updates, (err, doc) => {
+    const product = {
+        productId: req.body.product_id,
+        productName: req.body.product_name,
+        productAmountBought: req.body.product_bought,
+        productPricePerMeter: req.body.product_price,
+        productAmountSold: req.body.product_sold,
+    };
+
+    Product.findByIdAndUpdate(id, product, (err, doc) => {
 
 
         if (err) {
@@ -112,7 +119,7 @@ app.post('/updateRecords/:id', (req, res, next) => {
             next(err);
 
         } else {
-            console.log(req.body.product_name);
+            console.log('Updated Succesfully');
             res.redirect('../list');
         }
 
@@ -121,6 +128,21 @@ app.post('/updateRecords/:id', (req, res, next) => {
     });
 
 });
+
+//Function to delete a record in the database and then redirect in the list page
+app.get('/delete/:id', (res, req, next) => {
+    Product.findByIdAndDelete(req.params.id, (err, docs) => {
+        if (err) {
+            console.log(err);
+            console.log('Something went wrong to delete data');
+            next(err);
+        } else {
+            console.log("Deleted succesfully");
+            res.redirect('/list');
+        }
+    })
+});
+
 
 //listen() function is used to listen to conenctions on the specified host and port
 app.listen(3000, function () {

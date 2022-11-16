@@ -45,9 +45,11 @@
                         <%= products.productAmountSold%>
                     </td>
                     <td>
-                        <%= products.productAmountRemaining%>
+                        <%= (products.productAmountBought - products.productAmountSold )%>
                     </td>
                     <td><a class="ui purple button" href="/updateRecords/<%= products._id%>">Update</button>
+                    <td><a class="ui purple button" href="/delete/<%= products._id%>">Delete</button>
+
                     </td>
                 </tr>
                 <%})%>
