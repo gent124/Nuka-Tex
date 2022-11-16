@@ -4,6 +4,8 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express();
+const { check, validationResult } = require('express-validator');
+var alert = require('alert');
 //Connecting app with MongoDB using mongoose
 mongoose.connect("mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
@@ -36,6 +38,7 @@ app.use(bodyParser.urlencoded({
 //The express.static() method specifies the folder from which to serve all static resources.
 app.use(express.static(__dirname + '/public'));
 
+
 //''  Get request with respond with Homepage.ejs 
 app.get('', function (req, res) {
     res.render('Homepage');
@@ -58,28 +61,54 @@ app.get('/list', function (req, res) {
 });
 
 //POST request will get the input from the product.ejs and save it into the MongoDB collection
-app.post("/product", function (req, res) {
-    console.log(req.body.product_id);
+app.post("/product",
+    check('product_id', "Product id must be a numeric value")
+        .not().isEmpty().withMessage("Product Id cannot be empty").
+        isNumeric().withMessage("Product Id cannot acept other values than numbers"),
+    check('product_name', "Product Name cannot be null")
+        .not().isEmpty(),
+    check('product_bought', "Product Amount bought must be a numeric value")
+        .not().isEmpty()
+        .isNumeric(),
+    check('product_price', "Product Amount price must be a numeric value")
+        .not().isEmpty()
+        .isNumeric(),
+    check('product_sold', "Product Amount sold must be a numeric value")
+        .not().isEmpty()
+        .isNumeric(),
+    function (req, res) {
 
-    const product = new Product({
-        productId: req.body.product_id,
-        productName: req.body.product_name,
-        productAmountBought: req.body.product_bought,
-        productPricePerMeter: req.body.product_price,
-        productAmountSold: req.body.product_sold,
-        productAmountRemaining: req.body.product_remaining
-
-    });
-    product.save(function (err) {
-        if (err) {
-            throw err;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const alert = errors.array()
+            console.log(errors);
+            res.render('product', {
+                alert
+            })
         } else {
-            res.render("product");
+
+
+
+            const product = new Product({
+                productId: req.body.product_id,
+                productName: req.body.product_name,
+                productAmountBought: req.body.product_bought,
+                productPricePerMeter: req.body.product_price,
+                productAmountSold: req.body.product_sold,
+                productAmountRemaining: req.body.product_remaining
+
+            });
+            product.save(function (err) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log("Added Succesfully");
+                    res.render("product");
+                }
+            });
         }
+
     });
-
-
-});
 
 
 
