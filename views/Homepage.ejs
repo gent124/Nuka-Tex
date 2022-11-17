@@ -8,19 +8,21 @@
     <title>Admin Page</title>
     <style>
         html {
-            background-color: #c2d4dd;
+            background-color: white;
         }
 
         ul {
+            float: left;
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #6883BC;
+            background-color: #090633;
         }
 
         li {
             float: left;
+            padding: 20px;
         }
 
         li a {
@@ -34,6 +36,31 @@
         li a:hover {
             background-color: #111111;
         }
+
+        .top {
+            width: 101%;
+            height: 100px;
+            background-color: #090633;
+            margin-top: -10px;
+            margin-left: -10px;
+            margin-bottom: 1px;
+            padding: 11px;
+            padding-top: 2%;
+
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        #title {
+            color: white;
+            float: left;
+            margin: auto;
+            font-size: 35px;
+            padding: 2%;
+        }
     </style>
 
 
@@ -41,16 +68,22 @@
 
 <body>
 
-    <h1>Nuka Tex</h1>
+
     <div class="top">
-
+        <p id="title">Nuka-Tex</p>
         <ul>
+            <li>
 
+            </li>
             <li><a href="product">Add the product</a></li>
             <li><a href="list">See all the products</a></li>
             <li><a href="logOut">Log out</a></li>
         </ul>
     </div>
+
+
+
+
 </body>
 
 </html>
