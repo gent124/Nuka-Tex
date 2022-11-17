@@ -4,7 +4,6 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express();
-const nocache = require('nocache');
 const { check, validationResult } = require('express-validator');
 const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
 
@@ -37,7 +36,6 @@ const Product = mongoose.model('Product', productSchema);
 //set the view engine to ejs
 app.set("view engine", "ejs");
 
-app.use(nocache());
 
 
 
@@ -63,17 +61,18 @@ app.get('/logOut', function (req, res) {
 app.post('/loginPage',
     check('username').
         not().isEmpty().withMessage("Username cannot be empty")
-        .matches(adminUser.username)
+        .matches(adminUser.username).withMessage("Wrong Username")
     ,
     check('password').
         not().isEmpty().withMessage("Password cannot be empty")
-        .isIn([adminUser.password])
+        .isIn([adminUser.password]).withMessage("Wrong Password")
 
 
     , function (req, res) {
         const errors = validationResult(req);
         const alert = errors.array();
         if (!errors.isEmpty()) {
+            console.log(alert);
             res.render('loginPage', {
                 alert
             })
