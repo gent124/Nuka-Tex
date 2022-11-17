@@ -4,7 +4,10 @@ const ejs = require('ejs')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express();
+const nocache = require('nocache');
 const { check, validationResult } = require('express-validator');
+const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
+
 var alert = require('alert');
 //Connecting app with MongoDB using mongoose
 mongoose.connect("mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority", {
@@ -12,6 +15,10 @@ mongoose.connect("mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net
     useUnifiedTopology: true
 });
 
+const adminUser = {
+    username: 'nuka',
+    password: 'admin'
+}
 
 //Creating strcutre of our schema and their types
 const productSchema = {
@@ -30,6 +37,9 @@ const Product = mongoose.model('Product', productSchema);
 //set the view engine to ejs
 app.set("view engine", "ejs");
 
+app.use(nocache());
+
+
 
 //Middleware for parsing bodies from url and req.body objects will contain values of any type 
 app.use(bodyParser.urlencoded({
@@ -38,9 +48,48 @@ app.use(bodyParser.urlencoded({
 //The express.static() method specifies the folder from which to serve all static resources.
 app.use(express.static(__dirname + '/public'));
 
+//GET request for login page
+app.get('/', function (req, res) {
+    res.render('loginPage');
+});
+
+app.get('/logOut', function (req, res) {
+
+    res.redirect('../');
+    // res.render('loginPage');
+});
+
+
+app.post('/loginPage',
+    check('username').
+        not().isEmpty().withMessage("Username cannot be empty")
+        .matches(adminUser.username)
+    ,
+    check('password').
+        not().isEmpty().withMessage("Password cannot be empty")
+        .isIn([adminUser.password])
+
+
+    , function (req, res) {
+        const errors = validationResult(req);
+        const alert = errors.array();
+        if (!errors.isEmpty()) {
+            res.render('loginPage', {
+                alert
+            })
+
+        } else {
+            console.log("logged in succesfully");
+            res.render('Homepage');
+        }
+
+
+    });
+
+
 
 //''  Get request with respond with Homepage.ejs 
-app.get('', function (req, res) {
+app.get('/homepage', function (req, res) {
     res.render('Homepage');
 });
 
