@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express();
 const { check, validationResult } = require('express-validator');
-const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
+
 
 var alert = require('alert');
 //Connecting app with MongoDB using mongoose

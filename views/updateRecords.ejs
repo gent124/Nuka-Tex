@@ -8,27 +8,41 @@
     <title>Document</title>
 
     <style>
-        * {
+        html {
+            background-color: #597CFF;
             box-sizing: border-box;
         }
 
         input[type=text],
         textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
+            width: 70%;
+            margin-top: 20px;
+            padding: 13px;
+            border: 1px px solid #ccc;
             border-radius: 4px;
             resize: vertical;
+            background-color: white;
         }
 
         label {
+            color: #597CFF;
             padding: 12px 12px 12px 0;
             display: inline-block;
+
+        }
+
+        button[type=submit] {
+            background-color: #597CFF;
+            margin-left: 38%;
+            margin-top: 5%;
+            border-radius: 1px;
+            width: 21%;
+            font-size: 150%;
         }
 
         input[type=submit] {
-            background-color: blue;
-            color: blue;
+            background-color: 1BBA93;
+            color: 1BBA93;
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
@@ -40,10 +54,13 @@
             background-color: #45a049;
         }
 
-        .container {
+        .table-responsive {
+            background-color: white;
+            position: relative;
             border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 20px;
+            background-color: 66339;
+            padding: 41px;
+            padding-top: 127px;
         }
 
         .col-25 {
@@ -65,6 +82,11 @@
             clear: both;
         }
 
+        h1 {
+            position: top;
+            color: #597CFF;
+        }
+
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
 
@@ -75,35 +97,51 @@
                 margin-top: 0;
             }
         }
+
+        label {
+            width: 180px;
+            clear: left;
+            margin-top: 20px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        input,
+        label {
+            float: left;
+        }
     </style>
 </head>
 
 <body>
     <form action="/updateRecords/<%=Product._id%>" method="POST">
-        <div class="container">
+
+        <div class="table-responsive">
+            <h1>Perditeso Produktet</h1>
             <div class="productID">
                 <label for="label">ProductID:</label>
                 <input type="text" placeholder="Product ID" value="<%= Product.productId%>" name="product_id" size="15">
+
             </div>
             <div class="prodcutName">
-                <label for="label">ProductName:</label>
+                <label for="label">Emri i Produktit:</label>
                 <input type="text" placeholder="Product Name" value="<%= Product.productName%>" name="product_name"
                     size="15">
             </div>
             <div class="productAmountBought">
-                <label for="label">Product Amount Bought:</label>
+                <label for="label">Sasia e Blere(metra):</label>
                 <input type="text" placeholder="Product Amount Bought" value="<%= Product.productAmountBought%>"
                     name="product_bought" size="15">
             </div>
 
             <div class="productPricePerMeter">
-                <label for="label">Product Price Bought :</label>
+                <label for="label">Cmimi per meter :</label>
                 <input type="text" placeholder="Product Price per Meter" value="<%= Product.productPricePerMeter%>"
                     name="product_price">
             </div>
 
             <div class="productAmountSold">
-                <label for="label">Product Amount Sold :</label>
+                <label for="label">Sasia e shitur(metra) :</label>
                 <input type="text" placeholder="Product Amount Sold" value="<%= Product.productAmountSold%>"
                     name="product_sold" size="15">
             </div>
@@ -114,6 +152,8 @@
 
 
     </form>
+
+
 </body>
 
 </html>
