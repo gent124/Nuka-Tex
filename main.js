@@ -59,12 +59,10 @@ app.get('/logOut', function (req, res) {
 
 
 app.post('/loginPage',
-    check('username').
-        not().isEmpty().withMessage("Username cannot be empty")
+    check('username')
         .matches(adminUser.username).withMessage("Wrong Username")
     ,
-    check('password').
-        not().isEmpty().withMessage("Password cannot be empty")
+    check('password')
         .isIn([adminUser.password]).withMessage("Wrong Password")
 
 
@@ -111,18 +109,17 @@ app.get('/list', function (req, res) {
 //POST request will get the input from the product.ejs and save it into the MongoDB collection
 app.post("/product",
     check('product_id')
-        .notEmpty().withMessage("Product Id cannot be empty").
-        isNumeric().withMessage("Product Id cannot acept other values than numbers"),
-    check('product_name', "Product Name cannot be null")
+        .notEmpty().withMessage("ProductId nuk mund te jete e zbrazet"),
+    check('product_name', "Emri i produktit nuk mund te jete i zbrazet")
         .notEmpty(),
-    check('product_bought', "Product Amount bought must be a numeric value")
-        .notEmpty().withMessage("Hapsira e produkit e zbrazet")
+    check('product_bought', "Pranohen vetem numra!")
+        .notEmpty().withMessage("Sasia e blere nuk mund te jete e zbrazet")
         .isNumeric(),
-    check('product_price', "Product Amount price must be a numeric value")
-        .notEmpty()
+    check('product_price', "Pranohen vetem numra!")
+        .notEmpty().withMessage("Cmimi nuk mund te jete e zbrazet")
         .isNumeric(),
-    check('product_sold', "Product Amount sold must be a numeric value")
-        .notEmpty()
+    check('product_sold', "Pranohen vetem numra!")
+        .notEmpty().withMessage("Sasia e shitur nuk mund te jete e zbrazet")
         .isNumeric(),
     function (req, res) {
 
