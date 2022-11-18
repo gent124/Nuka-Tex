@@ -110,19 +110,19 @@ app.get('/list', function (req, res) {
 
 //POST request will get the input from the product.ejs and save it into the MongoDB collection
 app.post("/product",
-    check('product_id', "Product id must be a numeric value")
-        .not().isEmpty().withMessage("Product Id cannot be empty").
+    check('product_id')
+        .notEmpty().withMessage("Product Id cannot be empty").
         isNumeric().withMessage("Product Id cannot acept other values than numbers"),
     check('product_name', "Product Name cannot be null")
-        .not().isEmpty(),
+        .notEmpty(),
     check('product_bought', "Product Amount bought must be a numeric value")
-        .not().isEmpty()
+        .notEmpty().withMessage("Hapsira e produkit e zbrazet")
         .isNumeric(),
     check('product_price', "Product Amount price must be a numeric value")
-        .not().isEmpty()
+        .notEmpty()
         .isNumeric(),
     check('product_sold', "Product Amount sold must be a numeric value")
-        .not().isEmpty()
+        .notEmpty()
         .isNumeric(),
     function (req, res) {
 
