@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express();
 const { check, validationResult } = require('express-validator');
+const PORT = process.env.PORT || 3030;
+
+// your code
+
 
 
 var alert = require('alert');
@@ -219,7 +223,6 @@ app.get('/delete/:id', (req, res, next) => {
 
 
 //listen() function is used to listen to conenctions on the specified host and port
-app.listen(3000, function () {
-    console.log("App is running on Port 3000");
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
 });
-
