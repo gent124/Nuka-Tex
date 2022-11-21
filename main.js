@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const { check, validationResult } = require('express-validator');
 const PORT = process.env.PORT || 3030;
-const mongoDbUrl = "mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority";
+const mongoDbUrl = process.env.MONGODB_URL || "mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority";
 // your code
 
 
