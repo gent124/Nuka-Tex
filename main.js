@@ -39,8 +39,8 @@ const Product = mongoose.model('Product', productSchema);
 //set the view engine to ejs
 app.set("view engine", "ejs");
 
-
-
+const viewsPath = path.join(__dirname, '/views');
+app.set("views", viewsPath);
 
 //Middleware for parsing bodies from url and req.body objects will contain values of any type 
 app.use(bodyParser.urlencoded({
@@ -135,7 +135,7 @@ app.post("/product",
         if (!errors.isEmpty()) {
             const alert = errors.array()
             console.log(errors);
-            res.render('product', {
+            res.render('Product', {
                 alert
             })
         } else {
