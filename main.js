@@ -55,6 +55,11 @@ app.get('/', function (req, res) {
     res.render('loginPage');
 });
 
+app.get('/loginPage', function (req, res) {
+    res.render('loginPage');
+});
+
+
 app.get('/logOut', function (req, res) {
 
     res.redirect('../');
