@@ -156,7 +156,7 @@ app.post("/product",
                     throw err;
                 } else {
                     console.log("Added Succesfully");
-                    res.render("product");
+                    res.render("Product");
                 }
             });
         }
