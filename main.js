@@ -7,8 +7,7 @@ const app = express();
 const { check, validationResult } = require('express-validator');
 const PORT = process.env.PORT || 3030;
 const mongoDbUrl = process.env.MONGODB_URL || "mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority";
-// your code
-
+var path = require('path');
 
 
 var alert = require('alert');
@@ -48,7 +47,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 //The express.static() method specifies the folder from which to serve all static resources.
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '../public')));
 
 //GET request for login page
 app.get('/', function (req, res) {
@@ -101,7 +100,7 @@ app.get('/homepage', function (req, res) {
 
 // '/product' GET request with respond with Product.ejs
 app.get('/product', function (req, res) {
-    res.render('product');
+    res.render('Product');
 });
 
 
