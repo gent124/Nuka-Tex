@@ -14,10 +14,20 @@
         html {
             background-color: #597CFF;
             box-sizing: border-box;
+
         }
+
+        .table-responsive {
+            font-size: 110%;
+        }
+
+
+
+
 
         input[type=text],
         textarea {
+            font-size: 18px;
             width: 70%;
             margin-top: 20px;
             padding: 13px;
@@ -144,9 +154,14 @@
             </div>
 
             <div class="productAmountSold">
-                <label for="label">Sasia e shitur(metra) :</label>
-                <input type="text" placeholder="Product Amount Sold" value="<%= Product.productAmountSold%>"
+                <label for="label">Sasia e shitur(totale) :</label>
+                <input type="text" placeholder="Product Amount Sold" value="<%= Product.productAmountSold %>"
                     name="product_sold" size="15">
+            </div>
+
+            <div class="productAmountSoldNow">
+                <label for="label">Sasia e shitur :</label>
+                <input type="text" placeholder="Shto shitje e fundit" name="product_soldNow" size="15">
             </div>
             <button type="submit">Save</button>
         </div>

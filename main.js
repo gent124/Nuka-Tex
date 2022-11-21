@@ -183,13 +183,15 @@ app.get('/updateRecords/:id', function (req, res, next) {
 //POST request to find record by id and then update it in the database
 
 app.post('/updateRecords/:id', (req, res, next) => {
+    const totalAmountSold = parseInt(req.body.product_sold) + parseInt(req.body.product_soldNow);
+    console.log(totalAmountSold);
     const id = req.params.id;
     const product = {
         productId: req.body.product_id,
         productName: req.body.product_name,
         productAmountBought: req.body.product_bought,
         productPricePerMeter: req.body.product_price,
-        productAmountSold: req.body.product_sold,
+        productAmountSold: totalAmountSold,
     };
 
     Product.findByIdAndUpdate(id, product, (err, doc) => {
