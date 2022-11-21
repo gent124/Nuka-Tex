@@ -6,14 +6,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const { check, validationResult } = require('express-validator');
 const PORT = process.env.PORT || 3030;
-
+const mongoDbUrl = "mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority";
 // your code
 
 
 
 var alert = require('alert');
 //Connecting app with MongoDB using mongoose
-mongoose.connect("mongodb+srv://midas115:Dardania99@cluster0.yxcxfyc.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect(mongoDbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
